@@ -926,11 +926,15 @@ body {
     position: relative;
     padding: 0 0 30px 0;
     background: #333;
+    width: 100vw;       /* Ensure full screen width */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .footer .footer-top {
     background: #002e5f;
     padding: 60px 0 30px 0;
+    width: 100%;        /* Ensure full width */
+    margin: 0 auto;     /* Center content inside */
 }
 
 .footer .footer-top .footer-info,
