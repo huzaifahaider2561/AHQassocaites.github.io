@@ -674,12 +674,10 @@ body {
 }
 
 .team {
-    width: 100vw;              /* force full screen width */
-    padding: 4rem 0;           /* consistent vertical spacing */
+    min-width: 100vw;
+    min-height: 95vh;
     text-align: center;
-    background-color: #222;    /* black background */
-    overflow: hidden;          /* in case of scroll issues */
-    margin: 0 auto;
+    background-color: #222;
 }
 
 .team .heading {
@@ -692,12 +690,10 @@ body {
 }
 
 .team .row {
-    display: flex;             /* allow flex layout */
-    flex-wrap: wrap;           /* wrap cards */
-    justify-content: center;  /* center cards horizontally */
+    display: inline-block;
+    flex-direction: row;
     align-items: center;
-    gap: 3rem;                 /* spacing between cards */
-    padding: 2rem;
+    justify-content: center;
 }
 
 .team .row .card {
