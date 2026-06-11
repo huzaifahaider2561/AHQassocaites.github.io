@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,6 +24,133 @@
     <meta name="theme-color" content="#002e5f" />
     <link rel="manifest" href="../manifest.json" />
     <link rel="icon" type="image/x-icon" href="../image.png" />
+
+    <style>
+        /* Additional inline styles for dynamic fields and consistency */
+        .dynamic-other-field {
+            margin-top: 12px;
+            transition: all 0.2s ease;
+        }
+        .internship-details {
+            margin-top: 16px;
+            padding: 12px;
+            background-color: #f8f9fc;
+            border-radius: 12px;
+            border-left: 4px solid #002e5f;
+        }
+        .internship-details input, 
+        .internship-details textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            margin-top: 6px;
+        }
+        .internship-details label {
+            font-weight: 600;
+            margin-top: 10px;
+            font-size: 15px;
+            color: #002e5f;
+        }
+        .radio-class {
+            margin-bottom: 20px;
+        }
+        .radio {
+            display: block;
+            margin-bottom: 8px;
+        }
+        .career-form-phone, .career-form-txt, .career-form-email, .career-form-experience, 
+        .career-form-txtarea, .career-form-select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 18px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 15px;
+        }
+        .career-form-btn {
+            background-color: #002e5f;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .career-form-btn:hover {
+            background-color: #004b8f;
+        }
+        .file {
+            margin: 15px 0;
+        }
+        .name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #002e5f;
+            margin-bottom: 10px;
+        }
+        .career {
+            background: #f4f9ff;
+            padding: 50px 0;
+        }
+        .career-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .heading {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #002e5f;
+        }
+        .career-heading {
+            padding: 40px 20px 10px;
+            text-align: center;
+        }
+        .home {
+            background: linear-gradient(rgba(0,46,95,0.85), rgba(0,46,95,0.85)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #002e5f;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            z-index: 99;
+        }
+        .footer {
+            background: #001f3f;
+            padding: 30px 0 15px;
+            color: #ddd;
+        }
+        .footer h4 {
+            color: white;
+        }
+        .footer a {
+            color: #ccc;
+        }
+        @media (max-width: 768px) {
+            .home h1 { font-size: 42px; }
+            .home h2 { font-size: 22px; }
+        }
+    </style>
 </head>
 
 <body>
@@ -58,92 +185,145 @@
 
     <div class="career">
         <div class="career-form">
-            <form action="https://formspree.io/f/xvgayned" method="POST" enctype="multipart/form-data">
-                <!-- Form Fields -->
-                <input type="text" name="name" placeholder="Name" class="career-form-txt" required />
-                <input type="tel" id="phone" name="phone" required placeholder="Contact number" maxlength="10" class="career-form-phone" />
-                <input type="email" name="_replyto" placeholder="Email" class="career-form-email" required />
+            <form action="https://formspree.io/f/xvgayned" method="POST" enctype="multipart/form-data" id="careerForm">
+                <!-- Basic Fields -->
+                <input type="text" name="name" placeholder="Full Name" class="career-form-txt" required />
+                <input type="tel" id="phone" name="phone" required placeholder="Contact number (10 digits)" maxlength="10" class="career-form-phone" />
+                <input type="email" name="_replyto" placeholder="Email Address" class="career-form-email" required />
 
-                <!-- Career Options Specific to Your Company -->
+                <!-- Job Type Selection: Regular Position OR Internship -->
                 <div class="radio-class">
-                    <h2 class="name">Which Positions Are You Applying For?</h2>
+                    <h2 class="name">Application Type</h2>
                     <label class="radio">
-              <input
-                type="radio"
-                name="position"
-                value="Tax Consultant"
-                required
-              />
-              <span class="checkmark"></span>
-              Tax Consultant
-            </label>
+                        <input type="radio" name="application_type" value="Full-time Position" id="fullTimeRadio" required checked />
+                        <span class="checkmark"></span>
+                        Full-time Position
+                    </label>
                     <label class="radio">
-              <input
-                type="radio"
-                name="position"
-                value="orporate Compliance Officer"
-                required
-              />
-              <span class="checkmark"></span>
-              orporate Compliance Officer
-            </label>
-                    <label class="radio">
-              <input
-                type="radio"
-                name="position"
-                value="Application Officer"
-                required
-              />
-              <span class="checkmark"></span>
-              Application Officer
-            </label>
-                    <label class="radio">
-              <input
-                type="radio"
-                name="position"
-                value="Sales Representative"
-                required
-              />
-              <span class="checkmark"></span>
-              Sales Representative
-            </label>
-                    <label class="radio">
-              <input
-                type="radio"
-                name="position"
-                value="Marketing Specialist"
-                required
-              />
-              <span class="checkmark"></span>
-              Marketing Specialist
-            </label>
+                        <input type="radio" name="application_type" value="Internship" id="internshipRadio" required />
+                        <span class="checkmark"></span>
+                        Internship (Paid/Unpaid)
+                    </label>
                 </div>
 
-                <input type="number" id="experience" name="experience" required placeholder="Years of Experience" min="-1" max="50" class="career-form-experience" />
-                <textarea placeholder="Cover Letter" name="cover_letter" class="career-form-txtarea" required></textarea>
+                <!-- Positions for Full-Time / Regular Roles (updated list) -->
+                <div id="fullTimePositionsDiv">
+                    <h2 class="name">Which Position Are You Applying For? (Full-Time)</h2>
+                    <div class="radio-class">
+                        <label class="radio">
+                            <input type="radio" name="position" value="Tax Consultant" />
+                            <span class="checkmark"></span>
+                            Tax Consultant
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="position" value="Corporate Compliance Officer" />
+                            <span class="checkmark"></span>
+                            Corporate Compliance Officer
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="position" value="Application Officer" />
+                            <span class="checkmark"></span>
+                            Application Officer
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="position" value="Sales Representative" />
+                            <span class="checkmark"></span>
+                            Sales Representative
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="position" value="Marketing Specialist" />
+                            <span class="checkmark"></span>
+                            Marketing Specialist
+                        </label>
+                        <!-- NEW POSITIONS ADDED -->
+                        <label class="radio">
+                            <input type="radio" name="position" value="AI Engineer" />
+                            <span class="checkmark"></span>
+                            AI Engineer
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="position" value="Web App Developer" />
+                            <span class="checkmark"></span>
+                            Web App Developer
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="position" value="IT Officer" />
+                            <span class="checkmark"></span>
+                            IT Officer
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="position" value="Educational Consultant" />
+                            <span class="checkmark"></span>
+                            Educational Consultant
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="position" value="Educational Document & Application Officer" />
+                            <span class="checkmark"></span>
+                            Educational Document & Application Officer
+                        </label>
+                    </div>
+                </div>
 
+                <!-- Internship specific section (hidden initially) -->
+                <div id="internshipDiv" style="display: none;">
+                    <div class="internship-details">
+                        <h2 class="name" style="margin-top:0;">Internship Application</h2>
+                        <label>Select Internship Domain / Position:</label>
+                        <select name="internship_position" id="internshipPositionSelect" class="career-form-select" style="margin-bottom: 12px;">
+                            <option value="">-- Choose Internship Role --</option>
+                            <option value="AI Engineer Intern">AI Engineer Intern</option>
+                            <option value="Web App Developer Intern">Web App Developer Intern</option>
+                            <option value="IT Officer Intern">IT Officer Intern</option>
+                            <option value="Educational Consultant Intern">Educational Consultant Intern</option>
+                            <option value="Educational Document & Application Officer Intern">Educational Document & Application Officer Intern</option>
+                            <option value="Tax Consultant Intern">Tax Consultant Intern</option>
+                            <option value="Corporate Compliance Officer Intern">Corporate Compliance Officer Intern</option>
+                            <option value="Sales & Marketing Intern">Sales & Marketing Intern</option>
+                        </select>
+                        <label>Duration Availability (months):</label>
+                        <input type="text" name="internship_duration" placeholder="e.g., 2 months, 6 months" />
+                        <label>University/Institution (if applicable):</label>
+                        <input type="text" name="internship_institution" placeholder="Your university or college name" />
+                        <label>Why do you want this internship?</label>
+                        <textarea name="internship_motivation" rows="2" placeholder="Tell us about your passion and what you hope to learn..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Years of Experience -->
+                <input type="number" id="experience" name="experience" required placeholder="Years of Experience (0 for freshers)" min="0" max="50" class="career-form-experience" />
+                
+                <!-- Cover Letter -->
+                <textarea placeholder="Cover Letter / Brief Introduction" name="cover_letter" class="career-form-txtarea" required></textarea>
+
+                <!-- Resume Upload -->
                 <div class="file">
-                    <h2 class="name">Upload Your Resume</h2>
-                    <input style="font-size: 14px" type="file" name="resume" accept=".doc,.docx,.pdf" required /><br /><br /><br />
+                    <h2 class="name">Upload Your Resume (PDF/DOC)</h2>
+                    <input style="font-size: 14px" type="file" name="resume" accept=".doc,.docx,.pdf" required />
                 </div>
 
-                <input type="hidden" name="_subject" value="New Career Inquiry!" />
-
+                <!-- How Did You Hear About Us? with dynamic 'Other' text field -->
                 <div class="file">
                     <h2 class="name">How Did You Hear About Us?</h2>
-                    <select name="hear_about_us" class="career-form-select" required style="border-radius: 8px; height: 21px; font-size: 14px">
-              <option value="Google">Google</option>
-              <option value="Facebook">Facebook</option>
-              <option value="Instagram">Instagram</option>
-              <option value="LinkedIn">LinkedIn</option>
-              <option value="Twitter">Twitter</option>
-              <option value="Friend">Friend</option>
-              <option value="Other">Other</option>
-            </select>
+                    <select name="hear_about_us" id="hearAboutSelect" class="career-form-select" required style="border-radius: 8px; height: 42px; font-size: 14px">
+                        <option value="">-- Select an option --</option>
+                        <option value="Google">Google</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="Twitter">Twitter</option>
+                        <option value="Friend">Friend</option>
+                        <option value="Other">Other (please specify)</option>
+                    </select>
+                    <div id="otherReferralDiv" style="display: none; margin-top: 12px;">
+                        <input type="text" name="other_referral_source" id="otherReferralInput" placeholder="Please specify where you heard about us" class="career-form-txt" style="margin-bottom: 0;" />
+                    </div>
                 </div>
 
+                <!-- Hidden anti-spam subject -->
+                <input type="hidden" name="_subject" value="New Career/Internship Application - AHQ Associates" />
+
                 <div style="text-align: center">
-                    <input type="submit" value="Submit" style="color: white" class="career-form-btn" />
+                    <input type="submit" value="Submit Application" style="color: white" class="career-form-btn" />
                 </div>
             </form>
         </div>
@@ -156,52 +336,22 @@
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>About Us</h4>
                         <ul>
-                            <li>
-                                <i class="ion-ios-arrow-forward"></i>
-                                <a href="../index.html#home">Home</a>
-                            </li>
-                            <li>
-                                <i class="ion-ios-arrow-forward"></i>
-                                <a href="../index.html#about">About us</a>
-                            </li>
-                            <li>
-                                <i class="ion-ios-arrow-forward"></i>
-                                <a href="../index.html#service">Our services</a>
-                            </li>
-                            <li>
-                                <i class="ion-ios-arrow-forward"></i>
-                                <a href="../index.html#home">Terms & condition</a>
-                            </li>
-                            <li>
-                                <i class="ion-ios-arrow-forward"></i>
-                                <a href="../index.html#home">Privacy policy</a>
-                            </li>
+                            <li><i class="ion-ios-arrow-forward"></i><a href="../index.html#home">Home</a></li>
+                            <li><i class="ion-ios-arrow-forward"></i><a href="../index.html#about">About us</a></li>
+                            <li><i class="ion-ios-arrow-forward"></i><a href="../index.html#service">Our services</a></li>
+                            <li><i class="ion-ios-arrow-forward"></i><a href="../index.html#home">Terms & condition</a></li>
+                            <li><i class="ion-ios-arrow-forward"></i><a href="../index.html#home">Privacy policy</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li>
-                                <i class="ion-ios-arrow-forward"></i>
-                                <a href="../index.html#portfolio">Portfolio</a>
-                            </li>
-                            <li>
-                                <i class="ion-ios-arrow-forward"></i>
-                                <a href="../index.html#team">Team</a>
-                            </li>
-                            <li>
-                                <i class="ion-ios-arrow-forward"></i>
-                                <a href="careers.html">Careers</a>
-                            </li>
-                            <li>
-                                <i class="ion-ios-arrow-forward"></i>
-                                <a href="../index.html#contact">Contact</a>
-                            </li>
-                            <li>
-                                <i class="ion-ios-arrow-forward"></i>
-                                <a href="../index.html#faq">FAQ</a>
-                            </li>
+                            <li><i class="ion-ios-arrow-forward"></i><a href="../index.html#portfolio">Portfolio</a></li>
+                            <li><i class="ion-ios-arrow-forward"></i><a href="../index.html#team">Team</a></li>
+                            <li><i class="ion-ios-arrow-forward"></i><a href="careers.html">Careers</a></li>
+                            <li><i class="ion-ios-arrow-forward"></i><a href="../index.html#contact">Contact</a></li>
+                            <li><i class="ion-ios-arrow-forward"></i><a href="../index.html#faq">FAQ</a></li>
                         </ul>
                     </div>
 
@@ -234,14 +384,125 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 copyright" style="color: #fff; font-size: 1.3rem">
-                    Copyright &copy; 2023 AHQ Associataes All Rights Reserved.
+                    Copyright &copy; 2023 AHQ Associates All Rights Reserved.
                 </div>
             </div>
         </div>
     </div>
 
-    <a href="#" style="cursor: pointer" class="back-to-top" title="Get back to the top of the page"><i class="ion-ios-arrow-up"></i
-    ></a>
+    <a href="#" style="cursor: pointer" class="back-to-top" title="Get back to the top of the page"><i class="ion-ios-arrow-up"></i></a>
+
+    <!-- JavaScript for dynamic toggling (internship vs fulltime, and 'other' referral field) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fullTimeRadio = document.getElementById('fullTimeRadio');
+            const internshipRadio = document.getElementById('internshipRadio');
+            const fullTimeDiv = document.getElementById('fullTimePositionsDiv');
+            const internshipDiv = document.getElementById('internshipDiv');
+            
+            // Position radio buttons inside full-time section
+            const positionRadios = document.querySelectorAll('#fullTimePositionsDiv input[name="position"]');
+            const internshipSelect = document.getElementById('internshipPositionSelect');
+            
+            // Helper to toggle required attributes and visibility
+            function toggleApplicationType() {
+                if (fullTimeRadio.checked) {
+                    fullTimeDiv.style.display = 'block';
+                    internshipDiv.style.display = 'none';
+                    // Make full-time position radios required
+                    positionRadios.forEach(radio => radio.setAttribute('required', 'required'));
+                    // Remove required from internship fields
+                    if(internshipSelect) internshipSelect.removeAttribute('required');
+                    const durField = document.querySelector('input[name="internship_duration"]');
+                    const instField = document.querySelector('input[name="internship_institution"]');
+                    const motivField = document.querySelector('textarea[name="internship_motivation"]');
+                    if(durField) durField.removeAttribute('required');
+                    if(instField) instField.removeAttribute('required');
+                    if(motivField) motivField.removeAttribute('required');
+                    // Also clear any values to avoid confusion
+                } else if (internshipRadio.checked) {
+                    fullTimeDiv.style.display = 'none';
+                    internshipDiv.style.display = 'block';
+                    // Remove required from full-time positions
+                    positionRadios.forEach(radio => radio.removeAttribute('required'));
+                    // Set internship select as required
+                    if(internshipSelect) internshipSelect.setAttribute('required', 'required');
+                    // Additional fields can be optional but we can mark them as not strictly required for formspree.
+                    const durField = document.querySelector('input[name="internship_duration"]');
+                    const instField = document.querySelector('input[name="internship_institution"]');
+                    const motivField = document.querySelector('textarea[name="internship_motivation"]');
+                    if(durField) durField.removeAttribute('required');
+                    if(instField) instField.removeAttribute('required');
+                    if(motivField) motivField.removeAttribute('required');
+                }
+            }
+            
+            // Add event listeners
+            fullTimeRadio.addEventListener('change', toggleApplicationType);
+            internshipRadio.addEventListener('change', toggleApplicationType);
+            
+            // Initialize on page load (default fulltime)
+            toggleApplicationType();
+            
+            // ---------- "Other" referral source dynamic field ----------
+            const hearAboutSelect = document.getElementById('hearAboutSelect');
+            const otherReferralDiv = document.getElementById('otherReferralDiv');
+            const otherReferralInput = document.getElementById('otherReferralInput');
+            
+            function toggleOtherReferral() {
+                if (hearAboutSelect.value === 'Other') {
+                    otherReferralDiv.style.display = 'block';
+                    otherReferralInput.setAttribute('required', 'required');
+                } else {
+                    otherReferralDiv.style.display = 'none';
+                    otherReferralInput.removeAttribute('required');
+                    otherReferralInput.value = ''; // clear if hidden
+                }
+            }
+            
+            hearAboutSelect.addEventListener('change', toggleOtherReferral);
+            toggleOtherReferral(); // initial check
+            
+            // Form validation to ensure if internship is selected and internship role is chosen (also ensure one position for full-time)
+            const form = document.getElementById('careerForm');
+            form.addEventListener('submit', function(e) {
+                // Additional frontend validation: if full-time selected, ensure at least one position radio checked
+                if (fullTimeRadio.checked) {
+                    let positionSelected = false;
+                    positionRadios.forEach(radio => {
+                        if (radio.checked) positionSelected = true;
+                    });
+                    if (!positionSelected) {
+                        e.preventDefault();
+                        alert('Please select a position for Full-time application.');
+                        return false;
+                    }
+                } 
+                else if (internshipRadio.checked) {
+                    const internshipPosVal = internshipSelect.value;
+                    if (!internshipPosVal) {
+                        e.preventDefault();
+                        alert('Please select an Internship domain / position.');
+                        return false;
+                    }
+                }
+                
+                // Validate other referral if 'Other' selected but input empty
+                if (hearAboutSelect.value === 'Other') {
+                    const otherVal = otherReferralInput.value.trim();
+                    if (otherVal === '') {
+                        e.preventDefault();
+                        alert('Please specify how you heard about us (Other source).');
+                        return false;
+                    }
+                }
+                return true;
+            });
+            
+            // small UX: ensure that when user selects internship, we also set name consistency for formspree 
+            // (we'll keep separate fields already)
+        });
+    </script>
 
     <script src="../lib/jquery/jquery.min.js"></script>
     <script src="../lib/jquery/jquery-migrate.min.js"></script>
